@@ -1,7 +1,26 @@
 import React, { useState } from "react";
 
+
+
+
  function TextForm(props) {
   const [text, setText] = useState("");
+  const [isUpper, setIsUpper] = useState(false);
+
+const handleToggleCase = () => {
+  if (isUpper) {
+    setText(text.toLowerCase());
+    setIsUpper(false);
+    props.showAlert("Converted to Lowercase", "success");
+  } else {
+    setText(text.toUpperCase());
+    setIsUpper(true);
+    props.showAlert("Converted to Uppercase", "success");
+  }
+};
+
+
+
 
   const handleUpClick = () => {
     console.log("Uppercase was clicked");
@@ -69,12 +88,19 @@ const handleKebabCaseClick = () => {
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
+        {/* <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
         <button className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
           Convert to Lowercase
-        </button>
+        </button>  */}
+
+        {/* <button onClick={handleUpClick}>Convert to Uppercase</button>
+        <button onClick={handleLoClick}>Convert to Lowercase</button> */}
+        <button className="btn btn-primary mx-2" onClick={handleToggleCase}>Toggle Case</button>
+
+
+
         <button className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
           Clear Text
         </button>
@@ -87,7 +113,7 @@ const handleKebabCaseClick = () => {
 
 
 <button className="btn btn-primary mx-1 my-1" onClick={handleKebabCaseClick}>
-  Convert to Kebab-case
+   Kebab-case
 </button>
 
 
